@@ -39,3 +39,11 @@ btn.addEventListener("click", async function () {
     alert(`${error.message} , contact to admin or try after some time`);
   }
 });
+
+// var, scop, clo, Event loop , Prototype , Async A sync , dom and api call
+// functional programming
+function fun(){
+  var text= "hi";
+} 
+
+console.log(text)
