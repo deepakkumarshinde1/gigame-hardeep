@@ -119,13 +119,3 @@ human.printDetails(); // Deepakkumar 25
 Date.now(); // static method
 Human.printSomething(); // Hello
 Human.print(); // Parent
-
-// 8. Promises
-// 9. Async Functions
-// 10. Symbols
-// 11. Generators
-// 12. Iterators
-// 13. Maps
-// 14. Sets
-// 17. Proxies
-// 18. Modules
