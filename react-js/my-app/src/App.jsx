@@ -1,74 +1,110 @@
 import { useState } from "react";
+import Input from "./components/Input";
 
 function App() {
-  let [inputText, setInputText] = useState(""); // hook in react js
-  let [finalText, setFinalText] = useState("");
-  let incrementCount = () => {
-    setFinalText(inputText);
-    setInputText("");
-  };
+  let [inputs, setInput] = useState([
+    {
+      filedName: "username",
+      value: "",
+      type: "text",
+      label: "User Name",
+    },
+    {
+      filedName: "password",
+      value: "",
+      type: "password",
+      label: "Password",
+    },
+    {
+      filedName: "email",
+      value: "",
+      type: "email",
+      label: "Email",
+    },
+    {
+      filedName: "address",
+      value: "",
+      type: "address",
+      label: "User Permanent Address",
+    },
+    {
+      filedName: "gender",
+      value: [
+        {
+          filed: "male",
+          value: "Male",
+          check: true,
+        },
+        {
+          filed: "female",
+          value: "Female",
+          check: false,
+        },
+        {
+          filed: "other",
+          value: "Other",
+          check: false,
+        },
+      ],
+      type: "radio",
+      label: "Gender",
+    },
+    {
+      filedName: "citizenship",
+      value: [
+        {
+          filed: "indian",
+          value: "Indian",
+          check: true,
+        },
+        {
+          filed: "US",
+          value: "us",
+          check: false,
+        },
+      ],
+      type: "radio",
+      label: "Citizenship",
+    },
+  ]);
 
-  let inputChange = (event) => {
-    let { value, name } = event.target;
-    setInputText(value);
+  let handleInput = (event, index, radioIndex = -1, radioValue) => {
+    if (radioIndex === -1) {
+      let { value } = event.target;
+      let _inputs = [...inputs];
+      _inputs[index].value = value;
+      setInput(_inputs);
+    } else {
+      let _inputs = [...inputs];
+      let _tempRadioList = _inputs[index].value.map((radioList, _index) => {
+        if (_index === radioIndex) {
+          return { ...radioList, check: true };
+        } else {
+          return { ...radioList, check: false };
+        }
+      });
+      _inputs[index].value = [..._tempRadioList];
+      setInput(_inputs);
+    }
   };
   return (
     <>
-      <h1>Hello , {finalText}</h1>
-      <input
-        type="text"
-        value={inputText}
-        name="username"
-        onChange={inputChange}
-      />
-      <button
-        disabled={inputText.length < 3 ? true : false}
-        className={inputText.length < 3 ? "btn btn-danger" : "btn btn-success"}
-        onClick={incrementCount}
-      >
-        CLICK
-      </button>
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
+      <section className="container-fluid">
+        <section className="row">
+          <section className="col-4">
+            {inputs.map((input, index) => (
+              <Input
+                key={index}
+                index={index}
+                {...input}
+                handleInput={handleInput}
+              />
+            ))}
+          </section>
+        </section>
+      </section>
     </>
   );
 }
 
 export default App;
-
-// # npm 7+, extra double-dash is needed:
-// npm create vite@latest app-name -- --template react
-// npx create-react-app app-name
-
-// JSX => will one parent
-// class => className
-// for => htmlFor
-// javascript logic => {}
-// every element my be closed

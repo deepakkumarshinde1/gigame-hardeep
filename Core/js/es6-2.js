@@ -22,6 +22,7 @@ function getColor(color) {
       return "READY";
   }
 }
+
 console.log(RED); //
 getColor(RED); // STOP
 // 11. Generators
@@ -85,5 +86,27 @@ let set = new Set([1, 2, 3, 4, 5, 5, 5, 5]);
 // console.log(set.clear()); // undefined
 // console.log(set.size); // 0
 
-// 17. Proxies
-// 18. Modules
+// 17. Proxies => next session
+// 18. Modules => react
+
+// enum signal color example
+// const RED = Symbol("RED");
+// const BLUE = Symbol("BLUE");
+// const GREEN = Symbol("GREEN");
+
+// create a IIFE function for enum without symbol
+// const Color = (function () {
+//   const RED = Symbol("RED");
+//   const BLUE = Symbol("BLUE");
+//   const GREEN = Symbol("GREEN");
+//   return {
+//     RED,
+//     BLUE,
+//     GREEN,
+//   };
+// })();
+
+
+// create a chat gpt prompt which will provide me a ll the advance question of es6 topics create 30 questions and provide hints
+
+
